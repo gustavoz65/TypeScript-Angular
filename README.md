@@ -1921,4 +1921,835 @@ export class EditarProdutoComponent implements OnInit {
   <nav class="main-nav">
     <ul>
       <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
-      <li><a routerLink="/produtos" routerLinkActive="active">Produtos
+      <li><a routerLink="/produtos" routerLinkActive="active">Produtos</a></li>
+      <li><a routerLink="/sobre" routerLinkActive="active">Sobre</a></li>
+      <li><a routerLink="/contato" routerLinkActive="active">Contato</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+
+<!-- src/app/components/layout/cabecalho/cabecalho.component.html -->
+<header class="header">
+  <div class="logo">
+    <a routerLink="/">
+      <h1>CatalogApp</h1>
+    </a>
+  </div>
+  <nav class="main-nav">
+    <ul>
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+      <li><a routerLink="/produtos" routerLinkActive="active">Produtos</a></li>
+      <li><a routerLink="/sobre" routerLinkActive="active">Sobre</a></li>
+    </ul>
+  </nav>
+</header>
+```
+
+```typescript
+// src/app/components/layout/cabecalho/cabecalho.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-cabecalho',
+  templateUrl: './cabecalho.component.html',
+  styleUrls: ['./cabecalho.component.css']
+})
+export class CabecalhoComponent {
+  // Lógica do componente, se necessário
+}
+```
+
+```css
+/* src/app/components/layout/cabecalho/cabecalho.component.css */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #3f51b5;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logo a {
+  text-decoration: none;
+  color: white;
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav li {
+  margin-left: 1.5rem;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.1rem;
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  color: #ff4081;
+}
+
+.main-nav a.active:after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ff4081;
+}
+```
+
+```html
+<!-- src/app/components/layout/rodape/rodape.component.html -->
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 CatalogApp - Aplicação desenvolvida com Angular e TypeScript</p>
+    <div class="social-links">
+      <a href="https://github.com" target="_blank">GitHub</a>
+      <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+      <a href="https://twitter.com" target="_blank">Twitter</a>
+    </div>
+  </div>
+</footer>
+```
+
+```typescript
+// src/app/components/layout/rodape/rodape.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-rodape',
+  templateUrl: './rodape.component.html',
+  styleUrls: ['./rodape.component.css']
+})
+export class RodapeComponent {
+  // Lógica do componente, se necessário
+}
+```
+
+```css
+/* src/app/components/layout/rodape/rodape.component.css */
+.footer {
+  background-color: #303030;
+  color: #e0e0e0;
+  padding: 1.5rem 2rem;
+  margin-top: 2rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.social-links a {
+  color: #ff4081;
+  margin-left: 1rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #f8bbd0;
+}
+
+@media (max-width: 600px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .social-links {
+    margin-top: 1rem;
+  }
+  
+  .social-links a:first-child {
+    margin-left: 0;
+  }
+}
+```
+
+#### Componente de Loading
+
+```typescript
+// src/app/components/shared/loading/loading.component.ts
+import { Component, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-loading',
+  templateUrl: './loading.component.html',
+  styleUrls: ['./loading.component.css']
+})
+export class LoadingComponent {
+  @Input() mensagem: string = 'Carregando...';
+}
+```
+
+```html
+<!-- src/app/components/shared/loading/loading.component.html -->
+<div class="loading-wrapper">
+  <div class="spinner"></div>
+  <p>{{ mensagem }}</p>
+</div>
+```
+
+```css
+/* src/app/components/shared/loading/loading.component.css */
+.loading-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(63, 81, 181, 0.1);
+  border-left-color: #3f51b5;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+p {
+  margin-top: 1rem;
+  color: #666;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+```
+
+#### Componente Sobre
+
+```typescript
+// src/app/components/sobre/sobre.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-sobre',
+  templateUrl: './sobre.component.html',
+  styleUrls: ['./sobre.component.css']
+})
+export class SobreComponent {
+  versaoApp = '1.0.0';
+  anoAtual = new Date().getFullYear();
+}
+```
+
+```html
+<!-- src/app/components/sobre/sobre.component.html -->
+<div class="sobre-container">
+  <h2>Sobre o CatalogApp</h2>
+  
+  <div class="info-card">
+    <h3>Visão Geral</h3>
+    <p>O CatalogApp é uma aplicação de demonstração criada para mostrar as capacidades do Angular e TypeScript no desenvolvimento de aplicações web modernas.</p>
+    <p>Esta aplicação permite gerenciar um catálogo de produtos com todas as operações CRUD (Create, Read, Update, Delete).</p>
+  </div>
+  
+  <div class="info-card">
+    <h3>Tecnologias Utilizadas</h3>
+    <ul>
+      <li><strong>Angular:</strong> Framework front-end para construção da interface</li>
+      <li><strong>TypeScript:</strong> Linguagem de programação fortemente tipada</li>
+      <li><strong>Node.js:</strong> Ambiente de execução JavaScript do lado do servidor</li>
+      <li><strong>Express:</strong> Framework para criação da API RESTful</li>
+      <li><strong>HTTP Client:</strong> Módulo para comunicação com APIs</li>
+      <li><strong>Angular Forms:</strong> Para criação e validação de formulários</li>
+      <li><strong>Angular Router:</strong> Para navegação entre componentes</li>
+    </ul>
+  </div>
+  
+  <div class="info-card">
+    <h3>Versão</h3>
+    <p>Versão atual: {{ versaoApp }}</p>
+    <p>&copy; {{ anoAtual }} - Todos os direitos reservados</p>
+  </div>
+</div>
+```
+
+```css
+/* src/app/components/sobre/sobre.component.css */
+.sobre-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+h2 {
+  color: #3f51b5;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.info-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.info-card h3 {
+  color: #3f51b5;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 0.5rem;
+}
+
+.info-card ul {
+  padding-left: 1.5rem;
+}
+
+.info-card li {
+  margin-bottom: 0.5rem;
+}
+
+.info-card strong {
+  color: #673ab7;
+}
+```
+
+### Componente para Exibição de Mensagens
+
+```typescript
+// src/app/components/shared/mensagem/mensagem.component.ts
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { MensagemService, Mensagem } from '../../../services/mensagem.service';
+
+@Component({
+  selector: 'app-mensagem',
+  templateUrl: './mensagem.component.html',
+  styleUrls: ['./mensagem.component.css']
+})
+export class MensagemComponent implements OnInit, OnDestroy {
+  mensagem: Mensagem | null = null;
+  private subscription!: Subscription;
+
+  constructor(private mensagemService: MensagemService) {}
+
+  ngOnInit(): void {
+    this.subscription = this.mensagemService.mensagens$.subscribe(
+      (mensagem) => {
+        this.mensagem = mensagem;
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  fechar(): void {
+    this.mensagemService.limpar();
+  }
+}
+```
+
+```html
+<!-- src/app/components/shared/mensagem/mensagem.component.html -->
+<div *ngIf="mensagem" class="mensagem-container" [ngClass]="mensagem.tipo">
+  <span class="mensagem-texto">{{ mensagem.texto }}</span>
+  <button class="fechar-btn" (click)="fechar()">×</button>
+</div>
+```
+
+```css
+/* src/app/components/shared/mensagem/mensagem.component.css */
+.mensagem-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 300px;
+  max-width: 400px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  z-index: 1000;
+  animation: slidein 0.3s ease-in-out;
+}
+
+.sucesso {
+  background-color: #4caf50;
+  color: white;
+}
+
+.erro {
+  background-color: #f44336;
+  color: white;
+}
+
+.info {
+  background-color: #2196f3;
+  color: white;
+}
+
+.mensagem-texto {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.fechar-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+}
+
+@keyframes slidein {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+```
+
+### Atualizando o App Module
+
+```typescript
+// src/app/app.module.ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+
+// Componentes
+import { AppComponent } from './app.component';
+import { HomeComponent } from './components/home/home.component';
+import { ListaProdutosComponent } from './components/produtos/lista-produtos/lista-produtos.component';
+import { AdicionarProdutoComponent } from './components/produtos/adicionar-produto/adicionar-produto.component';
+import { EditarProdutoComponent } from './components/produtos/editar-produto/editar-produto.component';
+import { SobreComponent } from './components/sobre/sobre.component';
+import { CabecalhoComponent } from './components/layout/cabecalho/cabecalho.component';
+import { RodapeComponent } from './components/layout/rodape/rodape.component';
+import { LoadingComponent } from './components/shared/loading/loading.component';
+import { MensagemComponent } from './components/shared/mensagem/mensagem.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    ListaProdutosComponent,
+    AdicionarProdutoComponent,
+    EditarProdutoComponent,
+    SobreComponent,
+    CabecalhoComponent,
+    RodapeComponent,
+    LoadingComponent,
+    MensagemComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+### Atualizando o App Component
+
+```typescript
+// src/app/app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'CatalogApp';
+}
+```
+
+```html
+<!-- src/app/app.component.html -->
+<div class="app-container">
+  <app-cabecalho></app-cabecalho>
+  
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+  
+  <app-rodape></app-rodape>
+  
+  <app-mensagem></app-mensagem>
+</div>
+```
+
+```css
+/* src/app/app.component.css */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+```
+
+### Estilos Globais
+
+```css
+/* src/styles.css */
+/* Estilos globais para a aplicação */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: #3f51b5;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Botões */
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: none;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-primary {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #303f9f;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn-add {
+  background-color: #4caf50;
+  color: white;
+}
+
+.btn-add:hover {
+  background-color: #388e3c;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn-edit {
+  background-color: #ff9800;
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #f57c00;
+}
+
+.btn-delete {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #d32f2f;
+}
+
+.btn-cancel {
+  background-color: #9e9e9e;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #757575;
+}
+
+.btn-submit {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.btn-submit:hover {
+  background-color: #303f9f;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Formulários */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #3f51b5;
+  outline: none;
+}
+
+.form-group input.invalid,
+.form-group textarea.invalid,
+.form-group select.invalid {
+  border-color: #f44336;
+}
+
+.error-message {
+  color: #f44336;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* Contêineres */
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+```
+
+## Integração da API com o Frontend
+
+Agora que temos tanto a API quanto o frontend desenvolvidos, vamos garantir que estejam integrados adequadamente.
+
+### Configurando o CORS na API
+
+O CORS (Cross-Origin Resource Sharing) permite que a API aceite requisições do frontend, que está sendo servido em um domínio/porta diferente:
+
+```typescript
+// src/index.ts (API)
+import cors from 'cors';
+
+// Configuração do CORS
+app.use(cors({
+  origin: 'http://localhost:4200', // Endereço do frontend Angular
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+```
+
+### Executando os dois serviços
+
+Para executar os dois serviços ao mesmo tempo, você pode usar:
+
+1. Terminal 1 (API):
+```bash
+cd api-produtos
+npm run dev
+```
+
+2. Terminal 2 (Angular):
+```bash
+cd meu-primeiro-app
+ng serve
+```
+
+### Testando a integração
+
+1. Acesse o frontend em `http://localhost:4200`
+2. Navegue para a página de produtos
+3. Crie um novo produto preenchendo o formulário
+4. Verifique se o produto aparece na lista
+5. Tente editar e excluir produtos para garantir que todas as operações CRUD estão funcionando
+
+## Projeto Completo
+
+Agora você aprendeu a criar uma aplicação completa usando TypeScript e Angular com uma API RESTful. Vamos revisar o que foi feito:
+
+### Resumo do Backend (API)
+
+- Utilizamos Node.js e Express com TypeScript
+- Criamos uma API RESTful com endpoints para CRUD de produtos
+- Implementamos estrutura em camadas: controladores, serviços e modelos
+- Tratamento adequado de erros e status HTTP
+- Configuração de CORS para permitir requisições do frontend
+
+### Resumo do Frontend (Angular)
+
+- Criamos um aplicativo Angular com TypeScript
+- Componentes reutilizáveis para diferentes partes da aplicação
+- Roteamento para navegação entre páginas
+- Formulários reativos para manipulação de dados
+- Serviços para comunicação com a API
+- Tratamento de estados (carregando, erro, sucesso)
+- Layout responsivo e agradável visualmente
+
+### Próximos passos
+
+Agora que você tem uma aplicação básica funcionando, considere estas melhorias:
+
+1. **Autenticação e Autorização**
+   - Implementar login de usuários
+   - Proteger rotas com guards
+   - Adicionar tokens JWT para autenticação
+
+2. **Persistência de Dados**
+   - Substituir o armazenamento em memória por um banco de dados real (MongoDB, PostgreSQL, etc.)
+   - Implementar conexão com banco de dados na API
+
+3. **Testes**
+   - Escrever testes unitários para serviços e componentes
+   - Escrever testes de integração para fluxos completos
+
+4. **Hospedagem**
+   - Implantar a API em serviços como Heroku, Azure, AWS
+   - Implantar o frontend em serviços como Netlify, Vercel, GitHub Pages
+
+## Referências Adicionais
+
+### TypeScript
+- [Documentação oficial do TypeScript](https://www.typescriptlang.org/docs/)
+- [TypeScript Playground](https://www.typescriptlang.org/play)
+- [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/)
+
+### Angular
+- [Documentação oficial do Angular](https://angular.io/docs)
+- [Tutorial Tour of Heroes](https://angular.io/tutorial)
+- [Angular Material](https://material.angular.io/) (biblioteca de componentes UI)
+- [Angular CLI](https://cli.angular.io/)
+
+### Node.js e Express
+- [Documentação do Node.js](https://nodejs.org/en/docs/)
+- [Documentação do Express](https://expressjs.com/)
+- [TypeScript com Node.js](https://nodejs.org/en/learn/getting-started/nodejs-with-typescript)
+
+### Ferramentas
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Angular DevTools](https://angular.io/guide/devtools)
+- [Postman](https://www.postman.com/) (para testar APIs REST)
+
+### Cursos Gratuitos
+- [Angular University](https://angular-university.io/)
+- [Academind](https://academind.com/)
+- [FreeCodeCamp](https://www.freecodecamp.org/)
+- [Alura](https://www.alura.com.br/) (em português, alguns conteúdos gratuitos)
+
+### Comunidade
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/angular)
+- [Reddit Angular](https://www.reddit.com/r/Angular2/)
+- [Angular Brasil](https://angularbrasil.com.br/) (comunidade brasileira)
+```
+
+Este manual completo oferece um guia detalhado para iniciantes em TypeScript e Angular, além de mostrar como criar uma aplicação completa com backend RESTful e frontend Angular. Seguindo os passos descritos, você terá um excelente ponto de partida para desenvolver suas próprias aplicações web modernas usando estas tecnologias.
